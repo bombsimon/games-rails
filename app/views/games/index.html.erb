@@ -1,0 +1,37 @@
+<div class="main">
+    <div class="form-group">
+        <%= link_to "Add new game", new_game_path, class: "btn btn-lg btn-primary" %>
+    </div>
+
+    <table class="table table-striped" style="width: 900px">
+        <thead class="thead-dark">
+            <tr>
+                <th>Title</th>
+                <th><i class="fa fa-calendar"></i></th>
+                <th alt="Console"><i class="fa fa-gamepad"></i></th>
+                <th title="Owned?"><i class="fa fa-cart-arrow-down"></i></th>
+                <th title="Completed?"><i class="fa fa-check-square"></i></th>
+                <th title="Digital?"><i class="fa fa-globe"></i></th>
+                <th title="Delte!"><i class="fa fa-trash"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            <%
+                yes = '<i class="fa fa-check-circle" style="color: #28a745;"></i>'
+                no  = '<i class="fa fa-times-circle" style="color: #dc3545;"></i>'
+            %>
+
+            <% @games.sort { |a,b| a.name <=> b.name }.each do |g| %>
+            <tr>
+                <td><%= link_to g.name, g %></td>
+                <td><%= g.releasedate %></td>
+                <td><%= g.console.description %></td>
+                <td><%= raw g.owned ? yes : no %></td>
+                <td><%= raw g.completed ? yes : no %></td>
+                <td><%= raw g.digital ? yes : no %></td>
+                <td><%= link_to '', g, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa fa-trash" %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

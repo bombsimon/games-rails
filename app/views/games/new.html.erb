@@ -1,0 +1,49 @@
+<div class="main">
+    <%= form_for @game, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+        <div class="form-group">
+            <%= label_tag(:name, "Name") %>
+            <%= f.text_field :name, class: "form-control", placeholder: "Name of the game" %>
+        </div>
+
+        <div class="form-group">
+            <%= label_tag(:description, "Description") %>
+            <%= f.text_field :description, class: "form-control", placeholder: "Short (optional) description" %>
+        </div>
+
+        <div class="form-group">
+            <%= label_tag(:releasedate, "Release date") %>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+                <%= f.text_field :releasedate, class: "form-control releasedate", placeholder: "Release date of the game" %>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <%= label_tag(:console_id, "Console") %>
+            <%= f.select(:console_id, options_from_collection_for_select(Console.all, :id, :description), {}, { class: "form-control" }) %>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <%= f.check_box(:owned, class: "form-check-input") %>
+            <%= label_tag(:owned, "Owned", class: "form-check-label") %>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <%= f.check_box(:completed, class: "form-check-input") %>
+            <%= label_tag(:completed, "Completed", class: "form-check-label") %>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <%= f.check_box(:digital, class: "form-check-input") %>
+            <%= label_tag(:digital, "Digital", class: "form-check-label") %>
+        </div>
+
+        <div class="form-group">
+            <%= f.submit "Create", class: "btn btn-lg btn-primary" %>
+        </div>
+
+    <% end %>
+</div>
