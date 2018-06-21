@@ -15,5 +15,5 @@
     <p class="lead"><%= description %></p>
     <p>The game is released for <strong><%= @game.console.description %></strong> on <strong><%= @game.releasedate %></strong> and is bought as a <strong><%= copy_type %></strong> copy. The game is <strong><%= owned %></strong> and marked as <strong><%= completed %></strong>.</p>
 
-    <p><%= link_to 'Go back', games_path %></p>
+    <p><%= link_to 'Go back', games_path %> - <%= link_to 'Edit', edit_game_path %></p>
 </div>

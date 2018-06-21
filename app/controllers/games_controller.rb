@@ -4,15 +4,11 @@ class GamesController < ApplicationController
     end
 
     def new
-        # Create form (HTML)
         @game = Game.new
     end
 
     def create
-        # Create new game
         @game = Game.new(game_params)
-
-        puts game_params
 
         @game.save
         redirect_to @game
@@ -20,14 +16,28 @@ class GamesController < ApplicationController
 
     def show
         @game = Game.find_by_id(params[:id])
+
+        if (defined?(@game)).nil?
+            redirect_to games_url
+        end
     end
 
     def edit
-        # Edit form (HTML)
+        @game = Game.find_by_id(params[:id])
     end
 
     def update
-        # PATCH/PUT to update
+        game = Game.find_by_id(params[:id])
+
+        if (defined?(game)).nil?
+            logger.info "Game with id #{params[:id]} does not exist?!"
+            return
+        end
+
+        game.update(game_params)
+        game.save
+
+        redirect_to game
     end
 
     def destroy

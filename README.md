@@ -23,4 +23,4 @@ $ rails server
 ```
 
 Both consoles and games are added as `resources` to the routes so to view the
-game list, browse to [http://localhost:3000](http://localhost:3000).
+game list, browse to [http://localhost:3000/games](http://localhost:3000/games).
