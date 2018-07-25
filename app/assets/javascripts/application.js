@@ -16,12 +16,14 @@
 //= require_tree .
 //= require popper
 //= require bootstrap
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
 
-$(function() {
+$(document).on( "turbolinks:load", loadDatepicker );
+
+function loadDatepicker() {
   $('.releasedate').datepicker({
     format: 'yyyy-mm-dd',
     weekStart: 1,
     autoclose: true,
   });
-});
+}
